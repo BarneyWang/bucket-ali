@@ -44,7 +44,5 @@ public class TestCompletableFutrue {
             }
         };
 
-        CompletableFuture<T> completableFuture = new CompletableFuture<T>();
-        completableFuture =  future;
     }
 }

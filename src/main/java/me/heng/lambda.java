@@ -1,11 +1,15 @@
 package me.heng;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 /**
  * AUTHOR: heyong.wd(和庸)
@@ -33,36 +37,16 @@ public class lambda {
      * @Description:
      */
     public static void sout(){
-
+        List<String> l = Lists.newArrayList("a","b","c");
+        String str = "";
+        str= l.stream().filter(s -> s.equalsIgnoreCase("a")).map(String::new).collect(Collectors.joining() );
+//        l.stream().forEach(System::println);
+        System.out.println(str);
     }
 
     public static void main(String[] args) {
 
-//        String[] atp = {"Rafael Nadal", "Novak Djokovic",
-//                "Stanislas Wawrinka",
-//                "David Ferrer", "Roger Federer",
-//                "Andy Murray", "Tomas Berdych",
-//                "Juan Martin Del Potro"};
-//        List<String> players = Arrays.asList(atp);
-
-
-
-        // 以前的循环方式
-//        for (String p : players) {
-//            System.out.println(p);
-//        }
-
-//    // 使用 lambda 表达式以及函数操作(functional operation)
-//        players.forEach((player) -> System.out.print(player + "; "));
-//
-//    // 在 Java 8 中使用双冒号操作符(double colon operator)
-//        players.forEach(System.out::println);
-//
-//        String sn = "1111 \n ddd_1";
-//
-//        System.out.println(sn.replace("_",""));
-//        forEach();
-
+        sout();
     }
 }
 
