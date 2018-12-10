@@ -41,6 +41,7 @@ public class lambda {
         String str = "";
         str= l.stream().filter(s -> s.equalsIgnoreCase("a")).map(String::new).collect(Collectors.joining() );
 //        l.stream().forEach(System::println);
+
         System.out.println(str);
     }
 

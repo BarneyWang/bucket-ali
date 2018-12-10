@@ -1,0 +1,124 @@
+{
+  "templateId": "XXtemplate",
+  "templateName": "XX建站计划模板",
+  "templateDescription": "XX建站计划模板---ECS controller-a",
+  "params": {
+    "regionId": "${regionId}"
+  },
+  "products": [
+    {
+      "product": "ECS",
+      "productParam": {
+        "ecs_domain_name": ""
+      },
+      "applications": [
+        {
+          "application": "controller-a",
+          "applicationParams": {
+            "middlewareNodeGroup": "ecs_${regionId}_middleware",
+            "vncNodeGroup": "ecs_${regionId}_vnc"
+          },
+          "jobs": [
+            {
+              "jobId": "ECS.controller-a.queryIpsByGroup.middlewareNodeGroup",
+              "jobName": "初始化服务器资源（查询分组下机器列表）",
+              "jobRequire": "",
+              "jobService": "queryIpsByGroup",
+              "jobParams": {
+                "nodeGroup": "${middlewareNodeGroup}"
+              }
+            },
+            {
+              "jobId": "ECS.controller-a.middleware.applyVip",
+              "jobName": "申请controller-a的middleware vip",
+              "jobRequire": "ECS.controller-a.queryIpsByGroup",
+              "jobService": "applyVip",
+              "jobParams": {
+                "nodeGroup": "${middlewareNodeGroup}",
+                "port": 6400
+              }
+            },
+            {
+              "jobId": "ECS.controller-a.vnc.applyVip",
+              "jobName": "申请controller-a的vnc vip",
+              "jobRequire": "ECS.controller-a.queryIpsByGroup",
+              "jobService": "applyVip",
+              "jobParams": {
+                "nodeGroup": "${vncNodeGroup}",
+                "port": 443
+              }
+            },
+            {
+              "jobId": "ECS.controller-a.applyDns.cs01-tair",
+              "jobName": "申请controller-a的middleware的dns",
+              "jobRequire": "",
+              "jobService": "applyDns",
+              "jobParams": {
+                "appName": "controller-a",
+                "nodeGroup": "${middlewareNodeGroup}",
+                "domain": "${regionId}-cs02-tair.ecs.aliyun-inc.com",
+                "domainAppName": "controller-a"
+              }
+            },
+            {
+              "jobId": "ECS.controller-a.applyDns.cs02-tair",
+              "jobName": "申请controller-a的middleware的dns",
+              "jobRequire": "",
+              "jobService": "applyDns",
+              "jobParams": {}
+            },
+            {
+              "jobId": "ECS.controller-a.applyDns.zk-01",
+              "jobName": "申请controller-a的middleware的dns",
+              "jobRequire": "",
+              "jobService": "applyDns",
+              "jobParams": {}
+            },
+            {
+              "jobId": "ECS.controller-a.applyDns.zk-02",
+              "jobName": "申请controller-a的middleware的dns",
+              "jobRequire": "",
+              "jobService": "applyDns",
+              "jobParams": {}
+            },
+            {
+              "jobId": "ECS.controller-a.applyDns.zk-03",
+              "jobName": "申请controller-a的middleware的dns",
+              "jobRequire": "",
+              "jobService": "applyDns",
+              "jobParams": {}
+            },
+            {
+              "jobId": "ECS.controller-a.applyRds",
+              "jobName": "申请controller-a的RDS",
+              "jobRequire": "",
+              "jobService": "applyRds",
+              "jobParams": {
+                "aoneAppName": "controller-a"
+              }
+            },
+            {
+              "jobId": "ECS.controller-a.createRegionNode",
+              "jobName": "创建ecs管控节点",
+              "jobRequire": "",
+              "jobService": "createRegionNode",
+              "jobParams": {
+                "ecs_region_name": "${regionId}",
+                "ecs_domain_name": "${ecs_domain_name}"
+              }
+            },
+            {
+              "jobId": "ECS.controller-a.machineGroup",
+              "jobName": "ecs machineGroup",
+              "jobRequire": "",
+              "jobService": "machineGroup",
+              "jobParams": {
+                "ecs_region_name": "${regionId}"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

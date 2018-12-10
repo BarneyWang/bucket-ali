@@ -10,9 +10,13 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.alibaba.fastjson.serializer.SerializerFeature.QuoteFieldNames;
 import static com.alibaba.fastjson.serializer.SerializerFeature.UseSingleQuotes;
@@ -24,7 +28,19 @@ import static com.alibaba.fastjson.serializer.SerializerFeature.UseSingleQuotes;
  */
 public class TestHex {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
+        //http://bifrost-push-file-test.oss-cn-hangzhou-zmf.aliyuncs.com/
+//        String str = "http://bifrost-push-file-1.oss-cn-qingdao.aliyuncs.com/tmp/1.conf";
+//        String pathWithoutUrl = str.split("http://bifrost-push-file-1.oss-cn-qingdao.aliyuncs.com/")[1];
+//        System.out.println(pathWithoutUrl);
+//
+//        URL absoluteUrl = new URL(str);
+//        String host = absoluteUrl.getHost();
+//        System.out.println(host);
+//        System.out.println(absoluteUrl.getPath());
+        System.out.println("州OXS部署".getBytes().length);
+
+//        StringUtils.substringBefore(,"/");
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHH");
 //        System.out.println(sdf.format(new Date()));
 //        String str = "6bb-485c-b61" + sdf.format(new Date());
@@ -58,14 +74,49 @@ public class TestHex {
 //        List<String> l2 = Arrays.asList("1", "3");
 //
 //        System.out.println(getListDifference(l1,l2));
-        List<String> l = Arrays.asList("3", "4");
-        String s = JSONObject.toJSONString(l);
-        String hostNames = "[\"1\",\" 2\"]";
-        List<String> list = JSON.parseArray(s, String.class);
-        System.out.println(JSONObject.toJSONString(list));
+//        List<String> l = Arrays.asList("3", "4");
+//        String s = JSONObject.toJSONString(l);
+//        String hostNames = "[\"1\",\" 2\"]";
+//        List<String> list = JSON.parseArray(s, String.class);
+//        System.out.println(JSONObject.toJSONString(list));
+//
+//        Map map = Maps.newHashMap();
+//        map.put("k1", "v1");
+//        Map map2 = Maps.newHashMap();
+//        map2.put("k1", "v2");
+//        List<Map> l = Lists.newArrayList(map, map2);
+//
+//        List<TestVO> k1 = l.stream().map((m) -> {
+//            TestVO testVO = new TestVO();
+//            testVO.setK1((String) m.get("k1"));
+//
+//        }).collect(Collectors.toList());
+
+//        System.out.println(JSONObject.toJSONString(k1));
 
 
+        System.out.println(3 * 1_000);
+    }
 
+    public static  class TestVO{
+        String k1;
+        String k2;
+
+        public String getK1() {
+            return k1;
+        }
+
+        public void setK1(String k1) {
+            this.k1 = k1;
+        }
+
+        public String getK2() {
+            return k2;
+        }
+
+        public void setK2(String k2) {
+            this.k2 = k2;
+        }
     }
 
 
