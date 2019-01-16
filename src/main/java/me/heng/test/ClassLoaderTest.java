@@ -1,6 +1,7 @@
 package me.heng.test;
 
 import java.net.URL;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -19,8 +20,30 @@ public class ClassLoaderTest {
     }
 
     public static void main(String[] args) {
-        test();
+//        test();
 //        ExecutorService es  = Executors.newFixedThreadPool(3);
-        System.out.println(0x7fffffff);
+//        System.out.println(0x7fffffff);
+//        Test test = new Test();
+//        test.setStr("1");
+//        changeTest(test);
+//        System.out.println(test.getStr());
+        List l = null;
+        System.out.println(l.isEmpty());
+    }
+
+    public static void changeTest(Test test){
+        test.setStr("2");
+    }
+
+}
+class Test{
+    String str;
+
+    public String getStr() {
+        return str;
+    }
+
+    public void setStr(String str) {
+        this.str = str;
     }
 }
